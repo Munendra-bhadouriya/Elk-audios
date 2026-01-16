@@ -14,6 +14,9 @@ export default function Preloader() {
   const animationRef = useRef<number | null>(null);
   const progressRef = useRef(0);
   const isAnimatingRef = useRef(false);
+  const touchStartYRef = useRef<number | null>(null);
+  const touchStartTimeRef = useRef<number | null>(null);
+  const autoCompleteTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     // Sync refs with state
@@ -25,6 +28,7 @@ export default function Preloader() {
     // Reset scroll position to top on mount and reset preloader state
     window.scrollTo(0, 0);
     document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden"; // Also set on html for mobile
     
     // Reset all preloader state
     setScrollProgress(0);
@@ -46,7 +50,12 @@ export default function Preloader() {
 
     return () => {
       clearTimeout(timer);
+      if (autoCompleteTimerRef.current) {
+        clearTimeout(autoCompleteTimerRef.current);
+        autoCompleteTimerRef.current = null;
+      }
       document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
     };
   }, []);
 
@@ -54,17 +63,25 @@ export default function Preloader() {
     // Prevent body scroll when preloader is active
     if (scrollProgress < 1) {
       document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden"; // Also set on html for mobile
     } else {
       document.body.style.overflow = "";
+      document.documentElement.style.overflow = ""; // Also clear on html for mobile
     }
     
     return () => {
       document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
     };
   }, [scrollProgress]);
 
   useEffect(() => {
     if (!isLoading) {
+      // Detect if device is mobile/touch device
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || 
+                       ('ontouchstart' in window) || 
+                       (navigator.maxTouchPoints > 0);
+
       const startAnimation = (direction: "forward" | "reverse") => {
         // Cancel any existing animation
         if (animationRef.current) {
@@ -165,12 +182,123 @@ export default function Preloader() {
         }
       };
 
+      // Touch event handlers for mobile devices
+      const handleTouchStart = (e: TouchEvent) => {
+        const scrollY = window.scrollY;
+        const isAtTop = scrollY === 0 || scrollY < 10;
+        const currentProgress = progressRef.current;
+        
+        // Only handle touch if preloader is active and at top
+        if (isAtTop && currentProgress < 1) {
+          touchStartYRef.current = e.touches[0].clientY;
+          touchStartTimeRef.current = Date.now();
+        }
+      };
+
+      const handleTouchMove = (e: TouchEvent) => {
+        const scrollY = window.scrollY;
+        const isAtTop = scrollY === 0 || scrollY < 10;
+        const currentProgress = progressRef.current;
+        const currentIsAnimating = isAnimatingRef.current;
+        
+        // If preloader is complete, allow normal scrolling
+        if (currentProgress >= 1) {
+          return;
+        }
+        
+        // If at top and preloader is active, prevent default scrolling
+        if (isAtTop && currentProgress < 1 && touchStartYRef.current !== null) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      };
+
+      const handleTouchEnd = (e: TouchEvent) => {
+        const scrollY = window.scrollY;
+        const isAtTop = scrollY === 0 || scrollY < 10;
+        const currentProgress = progressRef.current;
+        const currentIsAnimating = isAnimatingRef.current;
+        
+        // Cancel auto-complete timer if user interacts
+        if (autoCompleteTimerRef.current) {
+          clearTimeout(autoCompleteTimerRef.current);
+          autoCompleteTimerRef.current = null;
+        }
+        
+        // If preloader is complete, allow normal scrolling
+        if (currentProgress >= 1) {
+          touchStartYRef.current = null;
+          touchStartTimeRef.current = null;
+          return;
+        }
+        
+        // Only process if we have a valid touch start and are at top
+        if (isAtTop && currentProgress < 1 && touchStartYRef.current !== null && touchStartTimeRef.current !== null) {
+          const touchEndY = e.changedTouches[0].clientY;
+          const touchDeltaY = touchStartYRef.current - touchEndY;
+          const touchDuration = Date.now() - touchStartTimeRef.current;
+          
+          // Minimum swipe distance to trigger animation (30px)
+          const minSwipeDistance = 30;
+          
+          // Only trigger animation if swipe is significant and not currently animating
+          if (Math.abs(touchDeltaY) >= minSwipeDistance && !currentIsAnimating) {
+            if (touchDeltaY > 0) {
+              // Swipe up (scroll down) - trigger forward animation
+              setAnimationDirection("forward");
+              setIsAnimating(true);
+              isAnimatingRef.current = true;
+              startAnimation("forward");
+            } else if (touchDeltaY < 0 && currentProgress > 0) {
+              // Swipe down (scroll up) - trigger reverse animation
+              setAnimationDirection("reverse");
+              setIsAnimating(true);
+              isAnimatingRef.current = true;
+              startAnimation("reverse");
+            }
+          }
+        }
+        
+        touchStartYRef.current = null;
+        touchStartTimeRef.current = null;
+      };
+
+      // Auto-complete preloader on mobile after a short delay if no interaction
+      if (isMobile && progressRef.current < 1) {
+        autoCompleteTimerRef.current = setTimeout(() => {
+          // Only auto-complete if still at 0 progress (no user interaction yet)
+          if (progressRef.current === 0 && !isAnimatingRef.current) {
+            setAnimationDirection("forward");
+            setIsAnimating(true);
+            isAnimatingRef.current = true;
+            startAnimation("forward");
+          }
+          autoCompleteTimerRef.current = null;
+        }, 1500); // Wait 1.5 seconds after loading completes
+      }
+
       window.addEventListener("wheel", handleWheel, { passive: false, capture: true });
       window.addEventListener("scroll", handleScroll, { passive: true });
       
+      // Add touch event listeners for mobile devices
+      if (isMobile) {
+        window.addEventListener("touchstart", handleTouchStart, { passive: true });
+        window.addEventListener("touchmove", handleTouchMove, { passive: false });
+        window.addEventListener("touchend", handleTouchEnd, { passive: true });
+      }
+      
       return () => {
+        if (autoCompleteTimerRef.current) {
+          clearTimeout(autoCompleteTimerRef.current);
+          autoCompleteTimerRef.current = null;
+        }
         window.removeEventListener("wheel", handleWheel);
         window.removeEventListener("scroll", handleScroll);
+        if (isMobile) {
+          window.removeEventListener("touchstart", handleTouchStart);
+          window.removeEventListener("touchmove", handleTouchMove);
+          window.removeEventListener("touchend", handleTouchEnd);
+        }
         if (animationRef.current) {
           cancelAnimationFrame(animationRef.current);
         }
