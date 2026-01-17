@@ -48,8 +48,22 @@ export default function Preloader() {
       setIsLoading(false);
     }, 1000);
 
+    // Fallback: Force complete preloader after maximum time (5 seconds total)
+    // This ensures the preloader never gets stuck
+    const maxTimer = setTimeout(() => {
+      if (progressRef.current < 1) {
+        setScrollProgress(1);
+        setContextProgress(1);
+        setScale(4);
+        setIsVisible(false);
+        document.body.style.overflow = "";
+        document.documentElement.style.overflow = "";
+      }
+    }, 5000);
+
     return () => {
       clearTimeout(timer);
+      clearTimeout(maxTimer);
       if (autoCompleteTimerRef.current) {
         clearTimeout(autoCompleteTimerRef.current);
         autoCompleteTimerRef.current = null;
@@ -57,7 +71,7 @@ export default function Preloader() {
       document.body.style.overflow = "";
       document.documentElement.style.overflow = "";
     };
-  }, []);
+  }, [setContextProgress]);
 
   useEffect(() => {
     // Prevent body scroll when preloader is active
@@ -65,11 +79,14 @@ export default function Preloader() {
       document.body.style.overflow = "hidden";
       document.documentElement.style.overflow = "hidden"; // Also set on html for mobile
     } else {
+      // Ensure scroll is unlocked when preloader completes
       document.body.style.overflow = "";
       document.documentElement.style.overflow = ""; // Also clear on html for mobile
+      setIsVisible(false);
     }
     
     return () => {
+      // Cleanup: always ensure scroll is unlocked
       document.body.style.overflow = "";
       document.documentElement.style.overflow = "";
     };
@@ -81,6 +98,24 @@ export default function Preloader() {
       const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || 
                        ('ontouchstart' in window) || 
                        (navigator.maxTouchPoints > 0);
+      
+      // Safety mechanism: Force complete preloader after 4 seconds if still stuck
+      const safetyTimer = setTimeout(() => {
+        if (progressRef.current < 1) {
+          setScrollProgress(1);
+          setContextProgress(1);
+          setScale(4);
+          setIsVisible(false);
+          setIsAnimating(false);
+          isAnimatingRef.current = false;
+          document.body.style.overflow = "";
+          document.documentElement.style.overflow = "";
+          if (animationRef.current) {
+            cancelAnimationFrame(animationRef.current);
+            animationRef.current = null;
+          }
+        }
+      }, 4000);
 
       const startAnimation = (direction: "forward" | "reverse") => {
         // Cancel any existing animation
@@ -119,6 +154,12 @@ export default function Preloader() {
             isAnimatingRef.current = false;
             setAnimationDirection(null);
             animationRef.current = null;
+            // Ensure body scroll is unlocked when animation completes
+            if (newProgress >= 1) {
+              document.body.style.overflow = "";
+              document.documentElement.style.overflow = "";
+              setIsVisible(false);
+            }
           }
         };
 
@@ -264,7 +305,9 @@ export default function Preloader() {
       };
 
       // Auto-complete preloader on mobile after a short delay if no interaction
-      if (isMobile && progressRef.current < 1) {
+      // Also auto-complete on desktop after a longer delay
+      if (progressRef.current < 1) {
+        const delay = isMobile ? 1500 : 2500; // Mobile: 1.5s, Desktop: 2.5s
         autoCompleteTimerRef.current = setTimeout(() => {
           // Only auto-complete if still at 0 progress (no user interaction yet)
           if (progressRef.current === 0 && !isAnimatingRef.current) {
@@ -274,7 +317,7 @@ export default function Preloader() {
             startAnimation("forward");
           }
           autoCompleteTimerRef.current = null;
-        }, 1500); // Wait 1.5 seconds after loading completes
+        }, delay);
       }
 
       window.addEventListener("wheel", handleWheel, { passive: false, capture: true });
@@ -288,6 +331,7 @@ export default function Preloader() {
       }
       
       return () => {
+        clearTimeout(safetyTimer);
         if (autoCompleteTimerRef.current) {
           clearTimeout(autoCompleteTimerRef.current);
           autoCompleteTimerRef.current = null;
@@ -304,9 +348,14 @@ export default function Preloader() {
         }
       };
     }
-  }, [isLoading]);
+  }, [isLoading, setContextProgress]);
 
   // Keep in DOM for reversible scrolling
+  // Hide completely when progress reaches 1
+  if (scrollProgress >= 1 && !isLoading) {
+    return null;
+  }
+
   return (
     <div
       className={`fixed inset-0 z-[100] ${
@@ -315,6 +364,7 @@ export default function Preloader() {
         style={{
         opacity: isLoading ? 1 : Math.max(0, 1 - (scrollProgress - 0.7) / 0.3),
         pointerEvents: scrollProgress >= 1 ? "none" : "auto",
+        visibility: scrollProgress >= 1 ? "hidden" : "visible",
       }}
     >
       {/* Dark background with logo cutout using mask-composite */}
