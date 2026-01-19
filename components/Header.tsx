@@ -98,10 +98,10 @@ export default function Header() {
               Build Your Own
             </Link>
             <Link
-              href="/blogs"
+              href="/about"
               className="text-text text-sm lg:text-base font-body hover:text-secondary transition-colors"
             >
-              Blogs
+              About Us
             </Link>
             <Link
               href="/contact"
@@ -228,11 +228,11 @@ export default function Header() {
                 Build Your Own
               </Link>
               <Link
-                href="/blogs"
+                href="/about"
                 className="text-text text-base font-body hover:text-secondary transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Blogs
+                About Us
               </Link>
               <Link
                 href="/contact"

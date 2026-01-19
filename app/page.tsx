@@ -1,7 +1,6 @@
 import Hero from "@/components/Hero";
 import AboutUs from "@/components/AboutUs";
 import Category from "@/components/Category";
-import Footer from "@/components/Footer";
 import Preloader from "@/components/Preloader";
 import { PreloaderProvider } from "@/contexts/PreloaderContext";
 
@@ -12,7 +11,6 @@ export default function Home() {
         <Hero />
         <AboutUs />
         <Category />
-        <Footer />
         <Preloader />
       </main>
     </PreloaderProvider>

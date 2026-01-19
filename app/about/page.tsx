@@ -1,46 +1,70 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
-import { usePreloader } from "@/contexts/PreloaderContext";
-import { useEffect, useState, useRef } from "react";
 
-export default function Hero() {
-  const { scrollProgress } = usePreloader();
-  const [showContent, setShowContent] = useState(false);
-  const [productsDropdownOpen, setProductsDropdownOpen] = useState(false);
+export default function AboutPage() {
+  const [scrollY, setScrollY] = useState(0);
+  const [backgroundSize, setBackgroundSize] = useState(120);
+  const [blur, setBlur] = useState(0);
+  const [opacity, setOpacity] = useState(1);
+  const [opaqueOpacity, setOpaqueOpacity] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const hasShownRef = useRef(false);
+  const [productsDropdownOpen, setProductsDropdownOpen] = useState(false);
+  const [contentVisible, setContentVisible] = useState(false);
 
   useEffect(() => {
-    // Only show content when preloader reveal is actively happening (60% or more)
-    // This ensures text appears during the reveal animation, not before
-    if (scrollProgress >= 0.6) {
-      if (!hasShownRef.current) {
-        hasShownRef.current = true;
-        // Small delay before starting animation to sync with reveal
-        setTimeout(() => {
-          setShowContent(true);
-        }, 400);
-      } else {
-        // Keep content visible once shown
-        setShowContent(true);
+    const handleScroll = () => {
+      const fromTop = window.scrollY;
+      const htmlHeight = document.documentElement.scrollHeight;
+      const featureWidth = window.innerWidth;
+      // Start at 120% (slight zoom) and zoom out (decrease) as you scroll
+      const initialSize = 120;
+      const scrollReduction = fromTop / 15; // Adjust scroll sensitivity
+      const newSize = Math.max(100, initialSize - scrollReduction);
+
+      setScrollY(fromTop);
+
+      if (newSize >= 100) {
+        setBackgroundSize(newSize);
+        setBlur(Math.min(10, fromTop / 100)); // Cap blur at 10px
+        setOpacity(Math.max(0, 1 - (fromTop / htmlHeight) * 1.3));
       }
-    } else {
-      // Hide content when preloader is active (before reveal)
-      setShowContent(false);
-      if (scrollProgress < 0.3) {
-        hasShownRef.current = false;
+
+      // Opaque overlay for non-Chrome/Safari browsers
+      const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+      const isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
+      
+      if (!isChrome && !isSafari) {
+        setOpaqueOpacity(Math.min(1, 0 + fromTop / 5000));
       }
-    }
-  }, [scrollProgress]);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Initial call
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    // Trigger content animation after a short delay
+    const timer = setTimeout(() => {
+      setContentVisible(true);
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center">
+    <div className="relative min-h-screen bg-[#232323]">
       {/* Navigation - Top Right */}
-      <div className={`absolute top-4 md:top-6 lg:top-8 right-4 md:right-6 lg:right-8 z-20 transition-all duration-1000 ease-out ${
-        showContent ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
-      }`}>
+      <div 
+        className={`absolute top-4 md:top-6 lg:top-8 right-4 md:right-6 lg:right-8 z-20 transition-all duration-1000 ease-out ${
+          contentVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
+        }`}
+      >
         {/* Mobile Burger Menu Button */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -251,81 +275,78 @@ export default function Hero() {
           </div>
         )}
       </div>
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
-        <div className="w-full h-full">
-          <Image
-            src="/assets/hero section bg image.avif"
-            alt="Professional audio studio"
-            fill
-            className="object-cover"
-            priority
-            quality={90}
+
+      <div className="relative min-h-screen">
+        {/* Feature Background */}
+        <div
+          className="feature fixed top-0 left-0 right-0 bottom-0 z-0 w-full h-full"
+          style={{
+            backgroundImage: "url(http://s3.nikecdn.com/pass/NikeBasketball/LeBron_Poster.jpg)",
+            backgroundPosition: "center center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: `${backgroundSize}%`,
+            backgroundAttachment: "fixed",
+            boxShadow: "0 -50px 20px -20px #232323 inset",
+            filter: `blur(${blur}px)`,
+            opacity: opacity,
+          }}
+        >
+          <div
+            className="opaque absolute inset-0 bg-[#d2d6f1]"
+            style={{ opacity: opaqueOpacity }}
           />
-          {/* Dark overlay for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70" />
         </div>
-      </div>
 
-      {/* Content Overlay */}
-      <div className="relative z-10 container mx-auto px-4 md:px-6 lg:px-8 py-12 md:py-16 lg:py-20">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Small "Elk Audios" text and tagline */}
+        {/* Content */}
+        <div className="content relative z-10 flex items-center justify-center min-h-screen md:h-screen w-[95%] mx-auto md:w-[60%] py-8 md:py-0 pb-20 md:pb-0">
           <div 
-            className={`mb-12 md:mb-16 lg:mb-20 transition-all duration-1000 ease-out ${
-              showContent ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
+            className={`bg-gray-800/97 backdrop-blur-md rounded-2xl md:rounded-lg p-6 md:p-12 w-full transition-all duration-1000 ease-out md:bg-gray-800/99 md:backdrop-blur-sm ${
+              contentVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
-            style={{ transitionDelay: showContent ? "0ms" : "0ms" }}
           >
-            <p className="text-white/60 text-xs md:text-sm lg:text-base font-body tracking-wider uppercase mb-1 md:mb-1.5 lg:mb-2">
-              Elk Audios
-            </p>
-            <p className="text-white/75 text-sm md:text-base lg:text-lg font-body">
-              Designed with intention. Delivered with precision.
-            </p>
-          </div>
-
-          {/* Main Heading */}
-          <div 
-            className={`mb-12 md:mb-16 lg:mb-20 flex justify-center transition-all duration-1000 ease-out ${
-              showContent ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-            }`}
-            style={{ transitionDelay: "200ms" }}
-          >
-            <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold leading-[1.1] tracking-tight lg:whitespace-nowrap text-center">
-              Sound, Designed to Belong
-            </h1>
-          </div>
-
-          {/* Description */}
-          <div 
-            className={`mb-12 md:mb-16 lg:mb-20 max-w-2xl mx-auto transition-all duration-1000 ease-out ${
-              showContent ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-            }`}
-            style={{ transitionDelay: "400ms" }}
-          >
-            <p className="text-white/85 text-base md:text-lg lg:text-xl xl:text-2xl font-body leading-relaxed">
-              Bespoke audio environments designed to elevate how spaces feel,
-              move, and resonate.
-            </p>
-          </div>
-
-          {/* CTA Button */}
-          <div 
-            className={`transition-all duration-1000 ease-out ${
-              showContent ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-            }`}
-            style={{ transitionDelay: "600ms" }}
-          >
-            <Link
-              href="/consultation"
-              className="inline-block border-2 border-white text-white px-6 py-2.5 md:px-8 md:py-3 lg:px-10 lg:py-3.5 text-sm md:text-base lg:text-lg font-body font-medium rounded-full hover:bg-white hover:text-black transition-colors"
+            <h2 
+              className={`text-2xl md:text-4xl font-heading font-bold mb-5 md:mb-6 text-white transition-all duration-1000 ease-out tracking-tight md:tracking-normal ${
+                contentVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              }`}
+              style={{ transitionDelay: "200ms", lineHeight: "1.2" }}
             >
-              Book Consultation
-            </Link>
+              About Us
+            </h2>
+            <p 
+              className={`text-sm md:text-lg font-body text-white/95 md:text-white/90 mb-5 md:mb-6 leading-[1.7] md:leading-relaxed transition-all duration-1000 ease-out ${
+                contentVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              }`}
+              style={{ transitionDelay: "300ms" }}
+            >
+              Elk Audio designs high-end speaker environments that integrate seamlessly into their surroundings. Each system is conceived as part of the space itself considered, intentional, and visually restrained.
+            </p>
+            <p 
+              className={`text-sm md:text-lg font-body text-white/95 md:text-white/90 mb-5 md:mb-6 leading-[1.7] md:leading-relaxed transition-all duration-1000 ease-out ${
+                contentVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              }`}
+              style={{ transitionDelay: "400ms" }}
+            >
+              We treat audio as a spatial element, giving equal weight to architecture, purpose, and aesthetics before recommending or configuring any system. Every decision is guided by how sound will live within the environment, not merely how it will perform.
+            </p>
+            <p 
+              className={`text-sm md:text-lg font-body text-white/95 md:text-white/90 mb-5 md:mb-6 leading-[1.7] md:leading-relaxed transition-all duration-1000 ease-out ${
+                contentVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              }`}
+              style={{ transitionDelay: "500ms" }}
+            >
+              Rather than offering individual products, we deliver carefully planned audio setups that enhance how a space is experienced, heard, and remembered. Our work prioritizes balance, clarity, and coherence over excess.
+            </p>
+            <p 
+              className={`text-sm md:text-lg font-body text-white/95 md:text-white/90 mb-5 md:mb-6 leading-[1.7] md:leading-relaxed transition-all duration-1000 ease-out ${
+                contentVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              }`}
+              style={{ transitionDelay: "600ms" }}
+            >
+              The result is sound that feels natural and immersive present without intrusion, refined without distraction. Elk Audio creates listening environments designed to endure, both technically and aesthetically.
+            </p>
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
