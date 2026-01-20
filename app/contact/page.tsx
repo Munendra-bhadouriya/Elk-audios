@@ -52,7 +52,7 @@ export default function ContactPage() {
               Get In Touch
             </h1>
             <p className="text-lg md:text-xl text-gray-300 font-body max-w-2xl mx-auto">
-              Ready to transform your space with exceptional audio? Let's start a conversation about your vision.
+              Ready to transform your space with exceptional audio? Let&apos;s start a conversation about your vision.
             </p>
           </div>
         </div>
@@ -71,7 +71,7 @@ export default function ContactPage() {
                   Book Consultation
                 </h2>
                 <p className="text-base md:text-lg text-gray-300 font-body leading-relaxed mb-8 md:mb-10">
-                  Schedule a personalized consultation with our audio experts. We'll discuss your space, preferences, and create a tailored solution that perfectly matches your vision and lifestyle.
+                  Schedule a personalized consultation with our audio experts. We&apos;ll discuss your space, preferences, and create a tailored solution that perfectly matches your vision and lifestyle.
                 </p>
                 <p className="text-base md:text-lg text-gray-300 font-body leading-relaxed mb-8 md:mb-10">
                   Our team will guide you through every step, from initial concept to final installation, ensuring an exceptional audio experience that seamlessly integrates into your environment.
