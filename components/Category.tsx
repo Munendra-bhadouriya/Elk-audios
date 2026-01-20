@@ -44,11 +44,11 @@ export default function Category() {
           />
           <div className="absolute inset-0 bg-black/40 z-10" />
           <div className="relative z-20 text-white text-center px-4">
-            <div className="inline-block relative">
+            <div className="inline-block relative md:inline-flex md:items-center md:justify-center md:gap-2">
               <h2 className="text-4xl font-bold">{category.title}</h2>
 
               {/* Desktop arrow - inline with heading */}
-              <span className="hidden md:inline-flex items-center justify-center ml-2 align-middle translate-y-[0.1875rem]">
+              <span className="hidden md:inline-flex items-center justify-center translate-y-[0.1875rem]">
                 <svg
                   className="w-9 h-9 md:w-10 md:h-10"
                   viewBox="0 0 24 24"
@@ -65,8 +65,8 @@ export default function Category() {
                 </svg>
               </span>
 
-              {/* Mobile arrow - aligned to last line (bottom-right of heading box) */}
-              <span className="absolute right-0 bottom-[0.1em] inline-flex md:hidden items-center justify-center">
+              {/* Mobile arrow - aligned to last line, slightly inset from the right */}
+              <span className="absolute right-4 bottom-[0.1em] inline-flex md:hidden items-center justify-center">
                 <svg
                   className="w-8 h-8"
                   viewBox="0 0 24 24"
