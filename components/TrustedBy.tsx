@@ -3,14 +3,13 @@
 import Image from "next/image";
 
 export default function TrustedBy() {
-  // Placeholder brand logos - replace with actual brand logo paths
   const brands = [
-    { id: 1, name: "Brand 1", logo: "/assets/brands/brand1.png" },
-    { id: 2, name: "Brand 2", logo: "/assets/brands/brand2.png" },
-    { id: 3, name: "Brand 3", logo: "/assets/brands/brand3.png" },
-    { id: 4, name: "Brand 4", logo: "/assets/brands/brand4.png" },
-    { id: 5, name: "Brand 5", logo: "/assets/brands/brand5.png" },
-    { id: 6, name: "Brand 6", logo: "/assets/brands/brand6.png" },
+    { id: 1, name: "Marshall", logo: "/assets/Brand Logos/Marshall.svg" },
+    { id: 2, name: "Bose", logo: "/assets/Brand Logos/Bose.svg" },
+    { id: 3, name: "Boat", logo: "/assets/Brand Logos/Boat.svg" },
+    { id: 4, name: "Philips", logo: "/assets/Brand Logos/Philips.svg" },
+    { id: 5, name: "SONY", logo: "/assets/Brand Logos/SONY.svg" },
+    { id: 6, name: "JBL", logo: "/assets/Brand Logos/JBL.svg" },
   ];
 
   // Duplicate brands for seamless loop
@@ -20,7 +19,7 @@ export default function TrustedBy() {
     <section className="bg-slate-900 py-12 md:py-16 overflow-x-hidden relative z-10" style={{ backgroundColor: '#0f172a' }}>
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-body font-bold text-center mb-8 md:mb-12" style={{ color: '#DEDBD4' }}>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-center mb-8 md:mb-12" style={{ color: '#DEDBD4' }}>
             TRUSTED BY<span className="inline-block w-2 h-2 ml-0.5" style={{ backgroundColor: 'var(--color-primary)' }}></span>
           </h2>
         </div>
@@ -36,11 +35,6 @@ export default function TrustedBy() {
               style={{ width: "150px", height: "80px" }}
             >
               <div className="relative w-full h-full grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100">
-                {/* Placeholder - replace with actual Image component when logos are available */}
-                <div className="w-full h-full bg-gray-700 rounded flex items-center justify-center text-gray-300 text-xs">
-                  {brand.name}
-                </div>
-                {/* Uncomment when you have actual logos:
                 <Image
                   src={brand.logo}
                   alt={brand.name}
@@ -48,7 +42,6 @@ export default function TrustedBy() {
                   height={80}
                   className="object-contain w-full h-full"
                 />
-                */}
               </div>
             </div>
           ))}
@@ -65,11 +58,6 @@ export default function TrustedBy() {
               style={{ width: "150px", height: "80px" }}
             >
               <div className="relative w-full h-full grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100">
-                {/* Placeholder - replace with actual Image component when logos are available */}
-                <div className="w-full h-full bg-gray-700 rounded flex items-center justify-center text-gray-300 text-xs">
-                  {brand.name}
-                </div>
-                {/* Uncomment when you have actual logos:
                 <Image
                   src={brand.logo}
                   alt={brand.name}
@@ -77,7 +65,6 @@ export default function TrustedBy() {
                   height={80}
                   className="object-contain w-full h-full"
                 />
-                */}
               </div>
             </div>
           ))}

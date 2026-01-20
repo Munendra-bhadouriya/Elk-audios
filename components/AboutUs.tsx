@@ -51,7 +51,7 @@ export default function AboutUs() {
               About Us
             </h2>
             <p 
-              className={`text-base md:text-lg lg:text-xl font-body text-white/80 leading-relaxed text-center mb-6 transition-all duration-1000 ease-out ${
+              className={`text-base md:text-lg lg:text-xl font-body text-white/80 leading-relaxed text-justify md:text-left mb-6 transition-all duration-1000 ease-out ${
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               }`}
               style={{ transitionDelay: "200ms" }}
@@ -59,7 +59,7 @@ export default function AboutUs() {
               Elk Audio designs high-end speaker environments that integrate seamlessly into their surroundings. Each system is conceived as part of the space itself considered, intentional, and visually restrained.
             </p>
             <p 
-              className={`text-base md:text-lg lg:text-xl font-body text-white/80 leading-relaxed text-center mb-6 transition-all duration-1000 ease-out ${
+              className={`text-base md:text-lg lg:text-xl font-body text-white/80 leading-relaxed text-justify md:text-left mb-6 transition-all duration-1000 ease-out ${
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               }`}
               style={{ transitionDelay: "300ms" }}
@@ -67,7 +67,7 @@ export default function AboutUs() {
               We treat audio as a spatial element, giving equal weight to architecture, purpose, and aesthetics before recommending or configuring any system. Every decision is guided by how sound will live within the environment, not merely how it will perform.
             </p>
             <p 
-              className={`text-base md:text-lg lg:text-xl font-body text-white/80 leading-relaxed text-center mb-6 transition-all duration-1000 ease-out ${
+              className={`text-base md:text-lg lg:text-xl font-body text-white/80 leading-relaxed text-justify md:text-left mb-6 transition-all duration-1000 ease-out ${
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               }`}
               style={{ transitionDelay: "400ms" }}
@@ -75,7 +75,7 @@ export default function AboutUs() {
               Rather than offering individual products, we deliver carefully planned audio setups that enhance how a space is experienced, heard, and remembered. Our work prioritizes balance, clarity, and coherence over excess.
             </p>
             <p 
-              className={`text-base md:text-lg lg:text-xl font-body text-white/80 leading-relaxed text-center mb-6 transition-all duration-1000 ease-out ${
+              className={`text-base md:text-lg lg:text-xl font-body text-white/80 leading-relaxed text-justify md:text-left mb-6 transition-all duration-1000 ease-out ${
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               }`}
               style={{ transitionDelay: "500ms" }}
