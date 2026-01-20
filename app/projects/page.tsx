@@ -190,7 +190,7 @@ export default function ProjectsPage() {
 
       {/* Hero section - first card perfectly centered on load */}
       <section 
-        className="flex items-center justify-center relative md:min-h-[calc(100vh-80px)] min-h-[calc(100vh-120px)] pt-20 md:pt-20" 
+        className="flex items-center justify-center relative min-h-[calc(100vh-160px)] md:min-h-[calc(100vh-80px)] pt-24 md:pt-20" 
       >
         {/* First Card - Centered in space below heading */}
         <div className="mx-auto w-full max-w-4xl px-4 py-10">
