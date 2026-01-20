@@ -19,7 +19,7 @@ export default function TrustedBy() {
     <section className="bg-slate-900 py-12 md:py-16 overflow-x-hidden relative z-10" style={{ backgroundColor: '#0f172a' }}>
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-center mb-8 md:mb-12" style={{ color: '#DEDBD4' }}>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold leading-[1.1] tracking-tight text-center mb-8 md:mb-12" style={{ color: '#DEDBD4' }}>
             TRUSTED BY<span className="inline-block w-2 h-2 ml-0.5" style={{ backgroundColor: 'var(--color-primary)' }}></span>
           </h2>
         </div>
