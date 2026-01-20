@@ -14,7 +14,6 @@ import {
   motion,
   useMotionTemplate,
   useSpring,
-  useMotionValueEvent,
 } from "framer-motion";
 
 interface Feature {
@@ -129,10 +128,18 @@ export default function ProjectsPage() {
     setIsLoaded(true);
   }, []);
 
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    const finalIndex = Math.floor(latest * backgrounds.length);
-    setBackground(backgrounds[finalIndex]);
-  });
+  useEffect(() => {
+    const unsubscribe = scrollYProgress.on("change", (latest: number) => {
+      const finalIndex = Math.floor(latest * backgrounds.length);
+      if (finalIndex >= 0 && finalIndex < backgrounds.length) {
+        setBackground(backgrounds[finalIndex]);
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, [scrollYProgress, backgrounds]);
 
   return (
     <motion.div
@@ -182,7 +189,9 @@ export default function ProjectsPage() {
       </motion.div>
 
       {/* Hero section - first card perfectly centered on load */}
-      <section className="flex items-center justify-center relative" style={{ minHeight: 'calc(100vh - 80px)', paddingTop: '80px' }}>
+      <section 
+        className="flex items-center justify-center relative md:min-h-[calc(100vh-80px)] min-h-[calc(100vh-120px)] pt-20 md:pt-20" 
+      >
         {/* First Card - Centered in space below heading */}
         <div className="mx-auto w-full max-w-4xl px-4 py-10">
           <Card feature={firstFeature} isFirst={true} isLoaded={isLoaded} />
