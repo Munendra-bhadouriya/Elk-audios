@@ -11,6 +11,7 @@ export default function Home() {
         <Hero />
         <AboutUs />
         <Category />
+        {/* ProjectsTestimonialsSwiper temporarily removed on request */}
         <Preloader />
       </main>
     </PreloaderProvider>

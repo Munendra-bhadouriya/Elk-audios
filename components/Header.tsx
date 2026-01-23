@@ -13,10 +13,10 @@ export default function Header() {
       <nav className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="flex items-center justify-between h-14 md:h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center">
+          <Link href="/" className="flex items-center" style={{ transform: "translateY(-10px)" }}>
             <div className="relative h-8 w-auto md:h-10 lg:h-12 flex items-center">
               <Image
-                src="/assets/Elk Logo transparent.png"
+                src="/assets/Logo White (1).svg"
                 alt="Elk Audios Logo"
                 width={200}
                 height={60}
@@ -81,6 +81,12 @@ export default function Header() {
                     >
                       Commercial PAVA & AV
                     </Link>
+                    <Link
+                      href="/build-your-own"
+                      className="block px-4 py-2 text-sm text-text hover:bg-gray-50 hover:text-secondary transition-colors"
+                    >
+                      Build Your Own
+                    </Link>
                   </div>
                 </div>
               )}
@@ -90,12 +96,6 @@ export default function Header() {
               className="text-text text-sm lg:text-base font-body hover:text-secondary transition-colors"
             >
               Projects
-            </Link>
-            <Link
-              href="/build-your-own"
-              className="text-text text-sm lg:text-base font-body hover:text-secondary transition-colors"
-            >
-              Build Your Own
             </Link>
             <Link
               href="/about"
@@ -210,6 +210,16 @@ export default function Header() {
                     >
                       Commercial PAVA & AV
                     </Link>
+                    <Link
+                      href="/build-your-own"
+                      className="text-text text-sm font-body hover:text-secondary transition-colors"
+                      onClick={() => {
+                        setMobileMenuOpen(false);
+                        setProductsDropdownOpen(false);
+                      }}
+                    >
+                      Build Your Own
+                    </Link>
                   </div>
                 )}
               </div>
@@ -219,13 +229,6 @@ export default function Header() {
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Projects
-              </Link>
-              <Link
-                href="/build-your-own"
-                className="text-text text-base font-body hover:text-secondary transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Build Your Own
               </Link>
               <Link
                 href="/about"

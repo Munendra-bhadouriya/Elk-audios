@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -23,13 +24,28 @@ export default function Navigation({
   const hoverColor = variant === "dark" ? "hover:text-white/80" : "hover:text-secondary";
 
   const containerClasses = withAnimation
-    ? `absolute top-4 md:top-6 lg:top-8 right-4 md:right-6 lg:right-8 z-20 transition-all duration-1000 ease-out ${
+    ? `absolute top-4 md:top-6 lg:top-8 left-4 md:left-6 lg:left-8 right-4 md:right-6 lg:right-8 z-20 transition-all duration-1000 ease-out ${
         showContent ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
       } ${className}`
-    : `absolute top-4 md:top-6 lg:top-8 right-4 md:right-6 lg:right-8 z-20 ${className}`;
+    : `absolute top-4 md:top-6 lg:top-8 left-4 md:left-6 lg:left-8 right-4 md:right-6 lg:right-8 z-20 ${className}`;
 
   return (
-    <div className={containerClasses}>
+    <div className={`${containerClasses} flex items-center justify-between`}>
+      {/* Logo */}
+      <Link href="/" className="flex items-center z-30 relative" style={{ transform: "translateY(-10px)" }}>
+        <Image
+          src="/assets/Logo White (1).svg"
+          alt="Elk Audios Logo"
+          width={140}
+          height={40}
+          className="h-8 w-auto md:h-10 lg:h-12 object-contain"
+          priority
+          style={{ filter: variant === "dark" ? "none" : "none" }}
+        />
+      </Link>
+
+      {/* Navigation Items Container */}
+      <div className="flex items-center">
       {/* Mobile Burger Menu Button */}
       <button
         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -108,6 +124,12 @@ export default function Navigation({
                 >
                   Commercial PAVA & AV
                 </Link>
+                <Link
+                  href="/build-your-own"
+                  className="block px-4 py-2 text-sm text-text hover:bg-gray-50 hover:text-secondary transition-colors"
+                >
+                  Build Your Own
+                </Link>
               </div>
             </div>
           )}
@@ -117,12 +139,6 @@ export default function Navigation({
           className={`${textColor} text-xs md:text-sm lg:text-base font-body ${hoverColor} transition-colors`}
         >
           Projects
-        </Link>
-        <Link
-          href="/build-your-own"
-          className={`${textColor} text-xs md:text-sm lg:text-base font-body ${hoverColor} transition-colors`}
-        >
-          Build Your Own
         </Link>
         <Link
           href="/about"
@@ -205,6 +221,16 @@ export default function Navigation({
                   >
                     Commercial PAVA & AV
                   </Link>
+                  <Link
+                    href="/build-your-own"
+                    className="px-4 py-2 text-sm text-text hover:bg-gray-50 hover:text-secondary transition-colors"
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      setProductsDropdownOpen(false);
+                    }}
+                  >
+                    Build Your Own
+                  </Link>
                 </div>
               )}
             </div>
@@ -214,13 +240,6 @@ export default function Navigation({
               onClick={() => setMobileMenuOpen(false)}
             >
               Projects
-            </Link>
-            <Link
-              href="/build-your-own"
-              className="px-4 py-2 text-sm text-text hover:bg-gray-50 hover:text-secondary transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Build Your Own
             </Link>
             <Link
               href="/about"
@@ -239,6 +258,7 @@ export default function Navigation({
           </nav>
         </div>
       )}
+      </div>
     </div>
   );
 }

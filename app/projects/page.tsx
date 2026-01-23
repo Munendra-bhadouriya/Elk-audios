@@ -32,7 +32,7 @@ const features: Feature[] = [
     content: (
       <div>
         <img
-          src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=500&h=500&fit=crop"
+          src="https://plus.unsplash.com/premium_photo-1680297665011-597de783fb92?w=500&h=500&fit=crop&auto=format&q=80"
           alt="Home Audio Installation"
           height={500}
           width={500}
@@ -49,7 +49,7 @@ const features: Feature[] = [
     content: (
       <div>
         <img
-          src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=500&h=500&fit=crop"
+          src="https://images.unsplash.com/photo-1737885197886-9e34a03ad226?w=500&h=500&fit=crop&auto=format&q=80"
           alt="Listening Experience"
           height={500}
           width={500}
@@ -66,7 +66,7 @@ const features: Feature[] = [
     content: (
       <div>
         <img
-          src="https://images.unsplash.com/photo-1596727147705-61a532a659bd?w=500&h=500&fit=crop"
+          src="https://images.unsplash.com/photo-1662454420647-3d20ddcdb8f8?w=500&h=500&fit=crop&auto=format&q=80"
           alt="Home Theater"
           height={500}
           width={500}
@@ -83,7 +83,7 @@ const features: Feature[] = [
     content: (
       <div>
         <img
-          src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=500&h=500&fit=crop"
+          src="https://images.unsplash.com/photo-1632582204758-5ac65783517a?w=500&h=500&fit=crop&auto=format&q=80"
           alt="Commercial Audio"
           height={500}
           width={500}
@@ -100,7 +100,7 @@ const features: Feature[] = [
     content: (
       <div>
         <img
-          src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=500&h=500&fit=crop"
+          src="https://images.unsplash.com/photo-1621976975813-10e88ae6e450?w=500&h=500&fit=crop&auto=format&q=80"
           alt="Professional AV"
           height={500}
           width={500}
@@ -121,7 +121,7 @@ export default function ProjectsPage() {
     offset: ["start end", "end start"],
   });
 
-  const backgrounds = ["#003049", "#2d3436", "#344e41", "#232323", "#403d39"];
+  const backgrounds = ["rgba(120,0,0,0.15)", "#2d3436", "#232323", "#344e41", "#403d39"];
   const [background, setBackground] = useState(backgrounds[0]);
 
   useEffect(() => {
@@ -150,7 +150,7 @@ export default function ProjectsPage() {
       <div className="fixed inset-0 z-0">
         <div className="w-full h-full">
           <Image
-            src="/assets/hero section bg temp.jpg"
+            src="/assets/Project page bg.jpeg"
             alt="Professional audio studio background"
             fill
             className="object-cover"
