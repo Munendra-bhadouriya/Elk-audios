@@ -11,11 +11,13 @@
   "dependencies": {
     "@tabler/icons-react": "^3.36.1",
     "framer-motion": "^12.27.5",
+    "leaflet": "^1.9.4",
     "next": "^14",
     "razorpay": "^2.9.2",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.49.3",
+    "react-leaflet": "^4.2.1",
     "swiper": "^12.0.3",
     "zod": "^3.22.4"
   },

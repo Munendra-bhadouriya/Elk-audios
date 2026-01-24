@@ -309,29 +309,24 @@ export default function ContactPage() {
               Find Us
             </h2>
             <div className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] rounded-lg overflow-hidden bg-slate-800/50 backdrop-blur-sm border border-amber-500/20 shadow-xl shadow-amber-500/5">
-              {/* Placeholder for map - Replace with actual map integration */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-amber-500/15 via-amber-400/10 to-transparent backdrop-blur-sm border border-amber-500/20 rounded-full mb-4 shadow-lg shadow-amber-500/5">
-                    <svg
-                      className="w-10 h-10 text-amber-300"
-                      fill="none"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                  </div>
-                  <p className="text-gray-300 font-body">Map integration placeholder</p>
-                  <p className="text-gray-400 text-sm font-body mt-2">
-                    123 Audio Street, San Francisco, CA 94102
-                  </p>
-                </div>
-              </div>
+              {/* Premium Google Maps Embed with Dark Theme */}
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3666.702339408982!2d77.43850189999999!3d23.217516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x397c430000ddddf1%3A0xa7d86503fe0c0be5!2sELK%20Audios!5e0!3m2!1sen!2sin!4v1769250464080!5m2!1sen!2sin"
+                width="100%"
+                height="100%"
+                style={{ border: 0, filter: 'brightness(0.6) contrast(1.2) saturate(0.7) grayscale(0.1)' }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="absolute inset-0 w-full h-full"
+                title="Elk Audios Location"
+              />
+              {/* Dark overlay to match placeholder tint (bg-black/25 like form inputs) */}
+              <div className="absolute inset-0 bg-black/25 pointer-events-none mix-blend-multiply"></div>
+              {/* Additional subtle darkening to match premium look */}
+              <div className="absolute inset-0 bg-slate-900/10 pointer-events-none"></div>
+              {/* Golden border accent matching the container */}
+              <div className="absolute inset-0 rounded-lg pointer-events-none border border-amber-500/20"></div>
             </div>
           </div>
         </div>
