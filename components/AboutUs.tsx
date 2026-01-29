@@ -56,7 +56,7 @@ export default function AboutUs() {
               }`}
               style={{ transitionDelay: "200ms" }}
             >
-              Elk Audio designs high-end speaker environments that integrate seamlessly into their surroundings. Each system is conceived as part of the space itself considered, intentional, and visually restrained.
+              Elk Audios designs high-end speaker environments that integrate seamlessly into their surroundings. Each system is conceived as part of the space itself considered, intentional, and visually restrained.
             </p>
             <p 
               className={`text-base md:text-lg lg:text-xl font-body text-white/80 leading-relaxed text-justify md:text-left mb-6 transition-all duration-1000 ease-out ${
@@ -80,7 +80,7 @@ export default function AboutUs() {
               }`}
               style={{ transitionDelay: "500ms" }}
             >
-              The result is sound that feels natural and immersive present without intrusion, refined without distraction. Elk Audio creates listening environments designed to endure, both technically and aesthetically.
+              The result is sound that feels natural and immersive present without intrusion, refined without distraction. Elk Audios creates listening environments designed to endure, both technically and aesthetically.
             </p>
             <div 
               className={`text-center transition-all duration-1000 ease-out ${
@@ -115,7 +115,7 @@ export default function AboutUs() {
                 }`}
                 style={{ transitionDelay: "200ms" }}
               >
-                Elk Audio designs high-end speaker environments that integrate seamlessly into their surroundings. Each system is conceived as part of the space itself considered, intentional, and visually restrained.
+                Elk Audios designs high-end speaker environments that integrate seamlessly into their surroundings. Each system is conceived as part of the space itself considered, intentional, and visually restrained.
               </p>
               <p 
                 className={`text-base md:text-lg lg:text-xl font-body text-white/80 leading-relaxed transition-all duration-1000 ease-out ${
@@ -143,7 +143,7 @@ export default function AboutUs() {
                 }`}
                 style={{ transitionDelay: "500ms" }}
               >
-                The result is sound that feels natural and immersive present without intrusion, refined without distraction. Elk Audio creates listening environments designed to endure, both technically and aesthetically.
+                The result is sound that feels natural and immersive present without intrusion, refined without distraction. Elk Audios creates listening environments designed to endure, both technically and aesthetically.
               </p>
               <div 
                 className={`transition-all duration-1000 ease-out ${

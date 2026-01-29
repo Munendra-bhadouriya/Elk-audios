@@ -176,11 +176,11 @@ export default function ContactPage() {
                         htmlFor="message" 
                         className="block text-sm font-body text-gray-300 mb-3 font-medium tracking-wide"
                       >
-                        Message <span className="text-amber-400/60">*</span>
+                        Requirements <span className="text-amber-400/60">*</span>
                       </label>
                       <textarea
                         id="message"
-                        {...register("message", { required: "Message is required" })}
+                        {...register("message", { required: "Requirements is required" })}
                         rows={5}
                         className="w-full px-5 py-4 bg-black/25 backdrop-blur-sm border border-amber-500/15 rounded-xl text-white placeholder-gray-500 outline-none focus-visible:outline-none focus:outline-none focus:ring-1 focus:ring-amber-400/40 focus:border-amber-400/30 transition-all duration-300 font-body resize-none hover:border-amber-500/20 focus:bg-black/35 leading-relaxed"
                         placeholder="Tell us about your project..."
@@ -301,33 +301,49 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Location Section */}
-      <section className="relative z-10 py-16 md:py-20 lg:py-24 border-t border-gray-800/50">
+      {/* Location Section - Chic, premium map */}
+      <section className="relative z-10 py-14 md:py-16 lg:py-20 border-t border-gray-800/50">
         <div className="container mx-auto px-4 md:px-6 lg:px-8">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-white mb-12 md:mb-16 text-center">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-white mb-8 md:mb-10 text-center tracking-tight">
               Find Us
             </h2>
-            <div className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] rounded-lg overflow-hidden bg-slate-800/50 backdrop-blur-sm border border-amber-500/20 shadow-xl shadow-amber-500/5">
-              {/* Premium Google Maps Embed with Dark Theme */}
+            <div className="relative w-full h-[320px] sm:h-[360px] md:h-[400px] lg:h-[440px] rounded-2xl overflow-hidden bg-slate-800/40">
+              {/* Refined frame - inner glow */}
+              <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/5 pointer-events-none z-10" aria-hidden />
+              {/* Map embed */}
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3666.702339408982!2d77.43850189999999!3d23.217516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x397c430000ddddf1%3A0xa7d86503fe0c0be5!2sELK%20Audios!5e0!3m2!1sen!2sin!4v1769250464080!5m2!1sen!2sin"
                 width="100%"
                 height="100%"
-                style={{ border: 0, filter: 'brightness(0.6) contrast(1.2) saturate(0.7) grayscale(0.1)' }}
+                style={{ border: 0, filter: "brightness(0.85) contrast(1.05) saturate(0.9)" }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 className="absolute inset-0 w-full h-full"
                 title="Elk Audios Location"
               />
-              {/* Dark overlay to match placeholder tint (bg-black/25 like form inputs) */}
-              <div className="absolute inset-0 bg-black/25 pointer-events-none mix-blend-multiply"></div>
-              {/* Additional subtle darkening to match premium look */}
-              <div className="absolute inset-0 bg-slate-900/10 pointer-events-none"></div>
-              {/* Golden border accent matching the container */}
-              <div className="absolute inset-0 rounded-lg pointer-events-none border border-amber-500/20"></div>
+              {/* Subtle vignette for depth */}
+              <div
+                className="absolute inset-0 pointer-events-none rounded-2xl"
+                style={{
+                  background: "radial-gradient(ellipse 80% 70% at 50% 50%, transparent 50%, rgba(15, 23, 42, 0.15) 100%)",
+                }}
+                aria-hidden
+              />
+              {/* Premium border - golden, soft */}
+              <div className="absolute inset-0 rounded-2xl pointer-events-none border border-amber-500/15 shadow-[inset_0_0_0_1px_rgba(251,191,36,0.08)]" aria-hidden />
             </div>
+            <p className="mt-4 text-center">
+              <a
+                href="https://maps.app.goo.gl/FcRCTqngKWzSUhNF9"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm font-body text-gray-400 hover:text-amber-300/90 transition-colors tracking-wide"
+              >
+                View on Google Maps
+              </a>
+            </p>
           </div>
         </div>
       </section>

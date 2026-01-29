@@ -19,8 +19,8 @@ export default function TrustedBy() {
     <section className="bg-slate-900 py-12 md:py-16 overflow-x-hidden relative z-10" style={{ backgroundColor: '#0f172a' }}>
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold leading-[1.1] tracking-tight text-center mb-8 md:mb-12" style={{ color: '#DEDBD4' }}>
-            TRUSTED BY<span className="inline-block w-2 h-2 ml-0.5" style={{ backgroundColor: 'var(--color-primary)' }}></span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold leading-tight tracking-tight text-center mb-8 md:mb-12 text-gray-200">
+            TRUSTED BY<span className="inline-block w-2 h-2 ml-0.5 rounded-sm bg-amber-500" aria-hidden></span>
           </h2>
         </div>
       </div>
@@ -34,7 +34,7 @@ export default function TrustedBy() {
               className="flex-shrink-0 mx-6 md:mx-8 lg:mx-12 flex items-center justify-center"
               style={{ width: "150px", height: "80px" }}
             >
-              <div className="relative w-full h-full grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100">
+              <div className="relative w-full h-full grayscale hover:grayscale-0 transition-all duration-300 opacity-45 hover:opacity-75">
                 <Image
                   src={brand.logo}
                   alt={brand.name}
@@ -57,7 +57,7 @@ export default function TrustedBy() {
               className="flex-shrink-0 mx-6 md:mx-8 lg:mx-12 flex items-center justify-center"
               style={{ width: "150px", height: "80px" }}
             >
-              <div className="relative w-full h-full grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100">
+              <div className="relative w-full h-full grayscale hover:grayscale-0 transition-all duration-300 opacity-45 hover:opacity-75">
                 <Image
                   src={brand.logo}
                   alt={brand.name}

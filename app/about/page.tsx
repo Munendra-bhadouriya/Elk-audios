@@ -56,28 +56,29 @@ export default function AboutPage() {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-[#232323]">
+    <div className="relative min-h-screen bg-slate-900">
       <div className="relative min-h-screen">
         {/* Feature Background */}
         <div
           className="feature fixed top-0 left-0 right-0 bottom-0 z-0 w-full h-full"
           style={{
-            backgroundImage: 'url("/assets/hero section bg temp.jpg")',
+            backgroundImage: 'url("/assets/category/category 4.webp")',
             backgroundPosition: "center center",
             backgroundRepeat: "no-repeat",
             backgroundSize: `${backgroundSize}%`,
             backgroundAttachment: "fixed",
-            boxShadow: "0 -50px 20px -20px #232323 inset",
-            filter: `blur(${blur}px)`,
+            boxShadow: "0 -60px 40px -30px rgba(15, 23, 42, 0.6) inset",
+            filter: `grayscale(100%) blur(${blur}px)`,
             opacity: opacity,
           }}
         >
           <div
-            className="opaque absolute inset-0 bg-[#d2d6f1]"
+            className="opaque absolute inset-0 bg-slate-900/90"
             style={{ opacity: opaqueOpacity }}
           />
-          {/* Dark tint overlay */}
-          <div className="absolute inset-0 bg-black/30" />
+          {/* Chic dark overlay - refined, premium */}
+          <div className="absolute inset-0 bg-slate-900/50" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-slate-900/40" />
         </div>
 
         {/* Content */}
@@ -101,7 +102,7 @@ export default function AboutPage() {
               }`}
               style={{ transitionDelay: "300ms" }}
             >
-              Elk Audio designs high-end speaker environments that integrate seamlessly into their surroundings. Each system is conceived as part of the space itself considered, intentional, and visually restrained.
+              Elk Audios designs high-end speaker environments that integrate seamlessly into their surroundings. Each system is conceived as part of the space itself considered, intentional, and visually restrained.
             </p>
             <p 
               className={`text-sm md:text-lg font-body text-white/95 md:text-white/90 mb-5 md:mb-6 leading-[1.7] md:leading-relaxed transition-all duration-1000 ease-out ${
@@ -125,7 +126,7 @@ export default function AboutPage() {
               }`}
               style={{ transitionDelay: "600ms" }}
             >
-              The result is sound that feels natural and immersive present without intrusion, refined without distraction. Elk Audio creates listening environments designed to endure, both technically and aesthetically.
+              The result is sound that feels natural and immersive present without intrusion, refined without distraction. Elk Audios creates listening environments designed to endure, both technically and aesthetically.
             </p>
           </div>
         </div>
