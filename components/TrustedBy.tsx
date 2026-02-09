@@ -16,7 +16,7 @@ export default function TrustedBy() {
   const duplicatedBrands = [...brands, ...brands];
 
   return (
-    <section className="bg-slate-900 py-12 md:py-16 overflow-x-hidden relative z-10" style={{ backgroundColor: '#0f172a' }}>
+    <section className="bg-slate-900 pt-0 pb-12 md:pt-0 md:pb-16 overflow-x-hidden relative z-10" style={{ backgroundColor: '#0f172a' }}>
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold leading-tight tracking-tight text-center mb-8 md:mb-12 text-gray-200">

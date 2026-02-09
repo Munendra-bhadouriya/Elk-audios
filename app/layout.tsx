@@ -1,7 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Syne, Work_Sans } from "next/font/google";
+import "lenis/dist/lenis.css";
 import "./globals.css";
-import PageFooter from "@/components/PageFooter";
+import ConditionalFooter from "@/components/ConditionalFooter";
 import LayoutNavigation from "@/components/LayoutNavigation";
 
 const syne = Syne({
@@ -35,7 +36,7 @@ export default function RootLayout({
       <body className={`${syne.variable} ${workSans.variable} relative`}>
         <LayoutNavigation />
         {children}
-        <PageFooter />
+        <ConditionalFooter />
       </body>
     </html>
   );

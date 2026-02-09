@@ -12,6 +12,7 @@
     "@tabler/icons-react": "^3.36.1",
     "framer-motion": "^12.27.5",
     "leaflet": "^1.9.4",
+    "lenis": "^1.3.17",
     "next": "^14",
     "razorpay": "^2.9.2",
     "react": "^18",

@@ -9,6 +9,7 @@ interface NavigationProps {
   className?: string;
   withAnimation?: boolean;
   showContent?: boolean;
+  fixed?: boolean;
 }
 
 export default function Navigation({
@@ -16,6 +17,7 @@ export default function Navigation({
   className = "",
   withAnimation = false,
   showContent = true,
+  fixed = false,
 }: NavigationProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [productsDropdownOpen, setProductsDropdownOpen] = useState(false);
@@ -23,11 +25,12 @@ export default function Navigation({
   const textColor = variant === "dark" ? "text-white" : "text-text";
   const hoverColor = variant === "dark" ? "hover:text-white/80" : "hover:text-secondary";
 
+  const positionClass = fixed ? "fixed" : "absolute";
   const containerClasses = withAnimation
-    ? `absolute top-2 md:top-3 lg:top-4 left-4 md:left-6 lg:left-8 right-4 md:right-6 lg:right-8 z-20 transition-all duration-1000 ease-out ${
+    ? `${positionClass} top-2 md:top-3 lg:top-4 left-4 md:left-6 lg:left-8 right-4 md:right-6 lg:right-8 z-20 transition-all duration-1000 ease-out ${
         showContent ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
       } ${className}`
-    : `absolute top-2 md:top-3 lg:top-4 left-4 md:left-6 lg:left-8 right-4 md:right-6 lg:right-8 z-20 ${className}`;
+    : `${positionClass} top-2 md:top-3 lg:top-4 left-4 md:left-6 lg:left-8 right-4 md:right-6 lg:right-8 z-20 ${className}`;
 
   return (
     <div className={`${containerClasses} flex items-center justify-between min-h-[52px] md:min-h-[56px] lg:min-h-[60px] py-2 md:py-3`}>
