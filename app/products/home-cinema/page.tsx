@@ -174,7 +174,7 @@ export default function HomeCinemaPage() {
     .scroll-section-wrapper {
       position: relative;
       z-index: 1;
-      margin-bottom: 12vh;
+      margin-bottom: 0;
       background-color: #0f172a;
     }
 
@@ -361,7 +361,7 @@ export default function HomeCinemaPage() {
       width: 100vw;
       position: relative;
       z-index: 0;
-      margin-top: 12vh;
+      margin-top: 0;
       margin-bottom: 0;
       /* Ensure it appears after scroll-section completes */
       clear: both;
@@ -590,9 +590,6 @@ export default function HomeCinemaPage() {
             <div className="layout-label-interiors">Interiors</div>
           </div>
         </section>
-        
-        {/* Spacer with TrustedBy background color */}
-        <div style={{ height: '12vh', backgroundColor: '#0f172a', width: '100%' }}></div>
       </div>
     </>
   );

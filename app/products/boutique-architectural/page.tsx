@@ -174,7 +174,7 @@ export default function BoutiqueArchitecturalPage() {
     .scroll-section-wrapper {
       position: relative;
       z-index: 1;
-      margin-bottom: 12vh;
+      margin-bottom: 0;
       background-color: #0f172a;
     }
 
@@ -361,7 +361,7 @@ export default function BoutiqueArchitecturalPage() {
       width: 100vw;
       position: relative;
       z-index: 0;
-      margin-top: 12vh;
+      margin-top: 0;
       margin-bottom: 0;
       /* Ensure it appears after scroll-section completes */
       clear: both;
@@ -511,7 +511,9 @@ export default function BoutiqueArchitecturalPage() {
             ))}
           </div>
         </section>
-
+        
+      
+        
         <div className="scroll-section-wrapper">
           <section className="boutique-three-col scroll-section sticky-container">
             <div className="zone-plain-overlay"></div>
@@ -547,9 +549,7 @@ export default function BoutiqueArchitecturalPage() {
                 />
               </section>
             </div>
-            {/* Text wrapper container */}
             <div className="text-wrapper-container">
-              {/* Plain text wrapper - left 2/3 of viewport */}
               <div className="plain-text-wrapper">
                 <div className="text-track">
                   <h1 className="scroll-text scroll-text-solid" aria-hidden="true">
@@ -558,7 +558,6 @@ export default function BoutiqueArchitecturalPage() {
                 </div>
               </div>
               
-              {/* Masked text wrapper - right 1/3 of viewport */}
               <div className="masked-text-wrapper">
                 <div className="text-track">
                   <h1 
@@ -572,6 +571,10 @@ export default function BoutiqueArchitecturalPage() {
             </div>
           </section>
         </div>
+        
+        
+       
+        
 
         <section className="layout-section">
           <div className="layout-left">
@@ -590,9 +593,6 @@ export default function BoutiqueArchitecturalPage() {
             <div className="layout-label-interiors">Interiors</div>
           </div>
         </section>
-        
-        {/* Spacer with TrustedBy background color */}
-        <div style={{ height: '12vh', backgroundColor: '#0f172a', width: '100%' }}></div>
       </div>
     </>
   );
