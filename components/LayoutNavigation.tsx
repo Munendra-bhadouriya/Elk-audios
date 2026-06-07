@@ -11,10 +11,9 @@ export default function LayoutNavigation() {
     return null;
   }
 
+  const isBoutiqueArchitectural = pathname === "/products/boutique-architectural";
+
   return (
-    <Navigation
-      variant="dark"
-      fixed={pathname === "/products/boutique-architectural"}
-    />
+    <Navigation variant="dark"/>
   );
 }

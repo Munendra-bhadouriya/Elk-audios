@@ -7,7 +7,7 @@ const ARCH_IMAGE =
 const SPLIT_IMAGE =
   "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=85";
 
-export default function HomeCinemaPage() {
+export default function BoutiqueArchitecturalPage() {
   // Same vertical parallax as /test
   useEffect(() => {
     const lenis = new Lenis({ smoothWheel: true });
@@ -182,7 +182,6 @@ export default function HomeCinemaPage() {
     .scroll-section {
       position: relative;
       width: 100%;
-      min-height: 100vh;
       /* Ensure it doesn't overlap following sections */
       isolation: isolate;
       background-color: #0f172a;
@@ -215,6 +214,15 @@ export default function HomeCinemaPage() {
       z-index: 0;
       pointer-events: none;
     }
+
+    .boutique-three-col {
+    align-items:center;
+    text-align: center;
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 13vh;
+  }
 
     /* Zone image - right side with mask, overlays images */
     .zone-image {
@@ -320,10 +328,11 @@ export default function HomeCinemaPage() {
       white-space: nowrap;
       will-change: transform;
       font-family: var(--font-heading), sans-serif;
-      line-height: 1;
+      line-height: 1.2;
       margin: 0;
       padding: 0;
       display: block;
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
     }
 
     /* Solid text - plain area */
@@ -490,6 +499,53 @@ export default function HomeCinemaPage() {
       font-size: 3.5rem;
       z-index: 9;
     }
+
+
+    // changed 
+
+/* ================= FINAL MOBILE FIX ================= */
+
+@media (max-width: 768px) {
+
+  .boutique-three-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .boutique-three-col__cell--content {
+    order: 1;
+  }
+
+  .boutique-three-col__cell--wide {
+    order: 2;
+    width: 100%;
+  }
+
+  .split-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 0;
+  }
+
+  .split-section .split {
+    width: 100%;
+    height: 260px;
+    background-size: cover;
+    background-position: center;
+
+    
+    
+  }
+  
+
+  /* 🔥 THIS IS KEY FIX */
+  .split-section .split.right {
+    margin-top: 0 !important;
+  }
+
+}
     
   `,
         }}
@@ -511,7 +567,9 @@ export default function HomeCinemaPage() {
             ))}
           </div>
         </section>
-
+        
+      
+        
         <div className="scroll-section-wrapper">
           <section className="boutique-three-col scroll-section sticky-container">
             <div className="zone-plain-overlay"></div>
@@ -547,9 +605,7 @@ export default function HomeCinemaPage() {
                 />
               </section>
             </div>
-            {/* Text wrapper container */}
             <div className="text-wrapper-container">
-              {/* Plain text wrapper - left 2/3 of viewport */}
               <div className="plain-text-wrapper">
                 <div className="text-track">
                   <h1 className="scroll-text scroll-text-solid" aria-hidden="true">
@@ -558,7 +614,6 @@ export default function HomeCinemaPage() {
                 </div>
               </div>
               
-              {/* Masked text wrapper - right 1/3 of viewport */}
               <div className="masked-text-wrapper">
                 <div className="text-track">
                   <h1 
@@ -572,6 +627,10 @@ export default function HomeCinemaPage() {
             </div>
           </section>
         </div>
+        
+        
+       
+        
 
         <section className="layout-section">
           <div className="layout-left">

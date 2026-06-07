@@ -1,27 +1,32 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Category() {
   const categories = [
     {
       title: "Home Audio Systems",
       description: "Purpose-built speaker setups for residences.",
+      link: "products/home-cinema",
       image: "/assets/category/category 1.webp",
     },
     {
       title: "Lifestyle Audio Solutions",
       description: "Design-forward audio systems for modern living.",
+      link: "products/lifestyle-home-audio",
       image: "/assets/category/category 2.avif",
     },
     {
       title: "Professional AV Systems",
       description: "Precision-driven audio-visual environments.",
+      link: "products/boutique-architectural",
       image: "/assets/category/category 3.avif",
     },
     {
       title: "Commercial Audio Installations",
       description: "Strategic sound solutions for commercial spaces.",
+      link: "products/commercial-pava-av",
       image: "/assets/category/category 4.webp",
     },
   ];
@@ -43,9 +48,11 @@ export default function Category() {
             sizes="100vw"
           />
           <div className="absolute inset-0 bg-black/40 z-10" />
-          <div className="relative z-20 text-white text-center px-4">
+          <div className="relative z-20 flex min-h-0 w-full flex-1 flex-col items-center justify-center px-4 text-center text-white">
             <div className="inline-block relative md:inline-flex md:items-center md:justify-center md:gap-2">
-              <h2 className="text-4xl font-bold">{category.title}</h2>
+              <Link href={category.link}>
+                <h2 className="text-4xl font-bold">{category.title}</h2>
+              </Link>
 
               {/* Desktop arrow - inline with heading */}
               <span className="hidden md:inline-flex items-center justify-center translate-y-[0.1875rem]">
