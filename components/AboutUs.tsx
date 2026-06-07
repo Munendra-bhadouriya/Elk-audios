@@ -51,7 +51,7 @@ export default function AboutUs() {
               About Us
             </h2>
             <p 
-              className={`text-base md:text-lg lg:text-xl font-body text-white/80 leading-relaxed text-justify md:text-left mb-6 transition-all duration-1000 ease-out ${
+              className={`text-base md:text-lg lg:text-xl font-body text-white/80 leading-relaxed text-justify mb-6 transition-all duration-1000 ease-out ${
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               }`}
               style={{ transitionDelay: "200ms" }}
@@ -59,29 +59,14 @@ export default function AboutUs() {
               Elk Audios designs high-end speaker environments that integrate seamlessly into their surroundings. Each system is conceived as part of the space itself considered, intentional, and visually restrained.
             </p>
             <p 
-              className={`text-base md:text-lg lg:text-xl font-body text-white/80 leading-relaxed text-justify md:text-left mb-6 transition-all duration-1000 ease-out ${
+              className={`text-base md:text-lg lg:text-xl font-body text-white/80 leading-relaxed text-justify mb-6 transition-all duration-1000 ease-out ${
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               }`}
               style={{ transitionDelay: "300ms" }}
             >
               We treat audio as a spatial element, giving equal weight to architecture, purpose, and aesthetics before recommending or configuring any system. Every decision is guided by how sound will live within the environment, not merely how it will perform.
             </p>
-            <p 
-              className={`text-base md:text-lg lg:text-xl font-body text-white/80 leading-relaxed text-justify md:text-left mb-6 transition-all duration-1000 ease-out ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-              }`}
-              style={{ transitionDelay: "400ms" }}
-            >
-              Rather than offering individual products, we deliver carefully planned audio setups that enhance how a space is experienced, heard, and remembered. Our work prioritizes balance, clarity, and coherence over excess.
-            </p>
-            <p 
-              className={`text-base md:text-lg lg:text-xl font-body text-white/80 leading-relaxed text-justify md:text-left mb-6 transition-all duration-1000 ease-out ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-              }`}
-              style={{ transitionDelay: "500ms" }}
-            >
-              The result is sound that feels natural and immersive present without intrusion, refined without distraction. Elk Audios creates listening environments designed to endure, both technically and aesthetically.
-            </p>
+            
             <div 
               className={`text-center transition-all duration-1000 ease-out ${
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
@@ -98,11 +83,11 @@ export default function AboutUs() {
           </div>
 
           {/* Desktop View - Two Columns */}
-          <div className="hidden md:grid md:grid-cols-2 md:gap-8 lg:gap-12">
+          <div className="hidden md:flex md:flex-col md:items-center md:text-center">
             {/* Left Column */}
-            <div className="flex flex-col">
+            <div className="flex flex-col items-center text-center max-w-4xl">
               <h2 
-                className={`text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-white mb-6 md:mb-8 lg:mb-10 transition-all duration-1000 ease-out ${
+                className={`text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-white mb-6 md:mb-8 lg:mb-10 text-center transition-all duration-1000 ease-out ${
                   isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 }`}
                 style={{ transitionDelay: "0ms" }}
@@ -110,7 +95,7 @@ export default function AboutUs() {
                 About Us
               </h2>
               <p 
-                className={`text-base md:text-lg lg:text-xl font-body text-white/80 leading-relaxed mb-6 transition-all duration-1000 ease-out ${
+                className={`text-base md:text-lg lg:text-xl font-body text-white/80 leading-relaxed text-justify max-w-3xl mb-6 transition-all duration-1000 ease-out ${
                   isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 }`}
                 style={{ transitionDelay: "200ms" }}
@@ -118,7 +103,7 @@ export default function AboutUs() {
                 Elk Audios designs high-end speaker environments that integrate seamlessly into their surroundings. Each system is conceived as part of the space itself considered, intentional, and visually restrained.
               </p>
               <p 
-                className={`text-base md:text-lg lg:text-xl font-body text-white/80 leading-relaxed transition-all duration-1000 ease-out ${
+                className={`text-base md:text-lg lg:text-xl font-body text-white/80 leading-relaxed text-justify max-w-3xl mb-8 transition-all duration-1000 ease-out ${
                   isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 }`}
                 style={{ transitionDelay: "300ms" }}
@@ -128,25 +113,11 @@ export default function AboutUs() {
             </div>
 
             {/* Right Column */}
-            <div className="flex flex-col justify-start">
-              <p 
-                className={`text-base md:text-lg lg:text-xl font-body text-white/80 leading-relaxed mb-6 transition-all duration-1000 ease-out ${
-                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                }`}
-                style={{ transitionDelay: "400ms" }}
-              >
-                Rather than offering individual products, we deliver carefully planned audio setups that enhance how a space is experienced, heard, and remembered. Our work prioritizes balance, clarity, and coherence over excess.
-              </p>
-              <p 
-                className={`text-base md:text-lg lg:text-xl font-body text-white/80 leading-relaxed mb-6 md:mb-8 transition-all duration-1000 ease-out ${
-                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                }`}
-                style={{ transitionDelay: "500ms" }}
-              >
-                The result is sound that feels natural and immersive present without intrusion, refined without distraction. Elk Audios creates listening environments designed to endure, both technically and aesthetically.
-              </p>
+            <div className="flex flex-col items-center">
+              
+              
               <div 
-                className={`transition-all duration-1000 ease-out ${
+                className={`text-center transition-all duration-1000 ease-out ${
                   isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 }`}
                 style={{ transitionDelay: "600ms" }}

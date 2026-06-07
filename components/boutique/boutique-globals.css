@@ -1,0 +1,510 @@
+/**
+ * Boutique page layout — global class names (used with plain strings + querySelector).
+ * Kept separate from CSS modules because Next requires module selectors to include a local class.
+ */
+
+/* Parallax gallery section */
+.parallax-gallery {
+  background-color: #0f172a;
+}
+
+/* Scroll section wrapper */
+.scroll-section-wrapper {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 0;
+  background-color: #0f172a;
+}
+
+.scroll-section {
+  position: relative;
+  width: 100%;
+  isolation: isolate;
+  background-color: #0f172a;
+}
+
+/* Stacked layout: agency block (top) + split section (bottom) */
+
+.boutique-agency-panel {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: clamp(3rem, 8vw, 6rem) 1rem clamp(2.5rem, 6vw, 4rem);
+  background-color: #0f172a;
+  isolation: isolate;
+}
+
+/* Don’t force full viewport height on the agency-only block */
+.boutique-agency-panel.scroll-section {
+  min-height: auto;
+}
+
+.boutique-agency-panel .boutique-agency-block {
+  text-align: justify;
+}
+
+.boutique-agency-panel .boutique-agency-block__p {
+  text-align: justify;
+}
+
+.boutique-split-panel {
+  position: relative;
+  width: 100%;
+  background-color: #0f172a;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.boutique-split-panel.sticky-container {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.boutique-split-panel__inner {
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+/* SplitSection.tsx — desktop subtree */
+.boutique-split-panel__inner--desktop {
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+/* SplitSection.tsx — mobile subtree (single pane + one text track) */
+.boutique-split-panel__inner--mobile .split-section--mobile {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 1rem;
+  width: 100%;
+}
+
+.boutique-split-panel__inner--mobile .split--mobile-hero {
+  width: 100%;
+  height: 260px;
+  min-height: 260px;
+  margin: 0;
+  margin-bottom: 0 !important;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.boutique-split-panel__inner--mobile .text-wrapper-container--mobile {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+  max-width: 100%;
+  height: auto;
+  min-height: 15vh;
+  z-index: 3;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.boutique-split-panel__inner--mobile .plain-text-wrapper--mobile {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 11;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.boutique-split-panel__inner--mobile .plain-text-wrapper--mobile .text-track {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  display: flex;
+  align-items: flex-start;
+  will-change: transform;
+  transform: translateX(50%);
+}
+
+/* Legacy two-column layout (e.g. home-cinema / test inline sections) */
+.boutique-three-col.sticky-container {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.boutique-three-col__cell--content.zone-plain {
+  position: relative;
+  z-index: 1;
+  pointer-events: auto;
+}
+
+.zone-plain-overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.boutique-three-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 13vh;
+  gap: 0 1.5rem;
+}
+
+.zone-image {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  z-index: 5;
+  overflow: hidden;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to right, transparent 50vw, black 50vw);
+  mask-image: linear-gradient(to right, transparent 50vw, black 50vw);
+  -webkit-mask-size: 100vw 100%;
+  mask-size: 100vw 100%;
+  -webkit-mask-position: -50vw 0;
+  mask-position: -50vw 0;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+.boutique-three-col__cell--wide {
+  position: relative;
+  z-index: 1;
+}
+
+.split-section {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  width: 100%;
+}
+
+.split-section .split {
+  width: 50%;
+  background-repeat: no-repeat;
+  background-size: 200% 150%;
+  height: 90vh;
+  margin-bottom: 17vh;
+}
+
+.split-section .split.left {
+  background-position: left top;
+}
+
+.split-section .split.right {
+  margin-top: 300px;
+  background-position: right -150px;
+}
+
+/* Centered over split imagery (full-bleed width for mask alignment) */
+.text-wrapper-container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+  height: 20vh;
+  z-index: 3;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.plain-text-wrapper {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 66.666vw;
+  height: 100%;
+  z-index: 11;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.masked-text-wrapper {
+  position: absolute;
+  left: 66.666vw;
+  top: -2vh;
+  width: 33.333vw;
+  height: 100%;
+  z-index: 12;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.text-track {
+  position: absolute;
+  left: 0;
+  top: 0;
+  will-change: transform;
+  transform: translateX(50%);
+  width: 100vw;
+  display: flex;
+  align-items: flex-start;
+}
+
+.plain-text-wrapper .text-track {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.masked-text-wrapper .text-track {
+  position: absolute;
+  left: -66.666vw;
+  top: 0;
+}
+
+.scroll-text {
+  font-size: 12vw;
+  font-weight: 600;
+  white-space: nowrap;
+  will-change: transform;
+  font-family: var(--font-heading), sans-serif;
+  line-height: 1.2;
+  margin: 0;
+  padding: 0;
+  display: block;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
+}
+
+.scroll-text-solid {
+  color: #fff !important;
+  transform: translateY(-0.1em);
+  opacity: 1;
+}
+
+.masked-text-outline {
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  -webkit-text-stroke: 1.5px #ffffff;
+  text-stroke: 1.5px #ffffff;
+  text-shadow: none;
+  background: none;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+}
+
+.boutique-agency-block__cta {
+  margin-top: 1.5rem !important;
+}
+
+.boutique-agency-block__heading {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 1.5rem;
+}
+
+.boutique-agency-block__p {
+  color: rgb(255 255 255 / 0.8);
+  font-size: 1.125rem;
+  line-height: 1.75;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.boutique-agency-block__p strong {
+  color: #fff;
+}
+
+.boutique-agency-block {
+  max-width: 42rem;
+  margin: 0 auto;
+  text-align: left;
+}
+
+/* Layout section (below scroll) */
+.layout-section {
+  display: flex;
+  height: calc(100vh + 50vh);
+  width: 100vw;
+  position: relative;
+  z-index: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  clear: both;
+  isolation: isolate;
+  top: 0;
+  background: #0f172a;
+}
+
+.layout-left {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+}
+
+.layout-left-top {
+  flex: 0 0 50vh;
+  background: #486239;
+}
+
+.layout-left-bottom {
+  flex: 1;
+  display: flex;
+}
+
+.layout-bottom-left {
+  flex: 1;
+  background: #c1bca4;
+  position: relative;
+}
+
+.layout-bottom-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 45%;
+  height: 50%;
+  background: #f6b51f;
+}
+
+.layout-right {
+  flex: 1;
+  background: #7a97af;
+  position: relative;
+}
+
+.layout-vertical-strip {
+  position: absolute;
+  left: 40%;
+  top: 0;
+  width: 4%;
+  height: 100%;
+  background: #7a97af;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.layout-vertical-title {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-size: 1.7rem;
+  letter-spacing: 0.08em;
+  padding-top: 1.5rem;
+}
+
+.layout-vertical-plus {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.layout-label-salt {
+  position: sticky;
+  top: 50%;
+  font-size: 1.8rem;
+}
+
+.layout-label-interiors {
+  position: sticky;
+  top: 95%;
+  font-size: 2rem;
+  z-index: 9;
+  text-align: right;
+  padding-right: 1.5rem;
+}
+
+.layout-menu-button {
+  position: fixed;
+  top: 0%;
+  right: 0%;
+  background: #f6b51f;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.9rem;
+  border-radius: 0;
+  z-index: 10;
+}
+
+.layout-empty {
+  height: 100vh;
+  width: 100vw;
+  background: #fff;
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 8;
+}
+
+.layout-label-architecture {
+  transform: rotate(-90deg);
+  transform-origin: top left;
+  position: sticky;
+  top: 25%;
+  left: 1.25rem;
+  font-size: 1.8rem;
+  z-index: 9;
+}
+
+.layout-label-add {
+  position: sticky;
+  top: 92%;
+  left: 1.5rem;
+  font-size: 3.5rem;
+  z-index: 9;
+}
+
+@media (max-width: 768px) {
+  .boutique-three-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .boutique-three-col__cell--content {
+    order: 1;
+  }
+
+  .boutique-three-col__cell--wide {
+    order: 2;
+    width: 100%;
+  }
+
+  .split-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 0;
+  }
+
+  .split-section .split {
+    width: 100%;
+    height: 260px;
+    background-size: cover !important;
+    background-position: center;
+    margin-bottom: 0 !important;
+  }
+
+  .text-wrapper-container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: auto;
+    min-height: 15vh;
+  }
+}

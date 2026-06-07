@@ -82,7 +82,7 @@ export default function AboutPage() {
         </div>
 
         {/* Content */}
-        <div className="content relative z-10 flex items-center justify-center min-h-screen md:h-screen w-[95%] mx-auto md:w-[60%] py-8 md:py-0 pb-20 md:pb-0">
+        <div className="content relative z-10 flex items-center text-justify min-h-screen md:h-screen w-[95%] mx-auto md:w-[60%] py-8 md:py-0 pb-20 md:pb-0">
           <div 
             className={`rounded-2xl md:rounded-lg p-6 md:p-12 w-full transition-all duration-1000 ease-out ${
               contentVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
@@ -93,7 +93,7 @@ export default function AboutPage() {
                 contentVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               }`}
               style={{ transitionDelay: "200ms", lineHeight: "1.2" }}
-            >
+            >              
               About Us
             </h2>
             <p 

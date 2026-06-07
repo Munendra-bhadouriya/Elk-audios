@@ -1,0 +1,162 @@
+/* ================= PARALLAX GALLERY (CSS module) ================= */
+
+.galleryRow {
+  display: flex;
+  align-items: flex-end;
+  gap: 56px;
+  height: 100vh;
+  padding: 0 1rem;
+}
+
+.parallaxWindow {
+  flex: 1;
+  position: relative;
+  overflow: hidden; 
+  background: #222;
+  min-width: 0;
+}
+
+/* stagger heights */
+.parallaxWindow[data-index="0"] {
+  height: calc(100vh - 5rem - 400px);
+}
+
+.parallaxWindow[data-index="1"] {
+  height: calc(100vh - 5rem - 240px);
+}
+
+.parallaxWindow[data-index="2"] {
+  height: calc(100vh - 5rem - 80px);
+}
+
+.parallaxImg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 250%;
+  object-fit: cover;
+  will-change: transform;
+}
+
+/* CONNECTED IMAGE */
+.parallaxWindow:nth-child(1) img {
+  object-position: 0% 75%;
+}
+
+.parallaxWindow:nth-child(2) img {
+  object-position: 50% 75%;
+}
+
+.parallaxWindow:nth-child(3) img {
+  object-position: 100% 75%;
+}
+
+/* ================= SPLIT HEADING ================= */
+
+.splitHeading {
+  position: absolute;
+  top: calc(5rem + 140px);
+  left: 1rem;
+
+  font-size: 6em;
+  font-weight: 700;
+  text-transform: uppercase;
+
+  color: transparent;
+  z-index: 10;
+}
+
+.splitHeading span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  color: white;
+  transition: 0.5s;
+}
+
+.splitHeading span:nth-child(1) {
+  clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
+}
+
+.splitHeading span:nth-child(2) {
+  clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
+}
+
+.splitHeading span:nth-child(3) {
+  top: 50%;
+  transform: translateY(-50%) scaleY(0);
+  background: #fbbf24;
+  color: #0c1136;
+  font-size: 0.25em;
+  text-align: center;
+  padding: 0.2em 1em;
+}
+
+.splitHeading:hover span:nth-child(1) {
+  transform: translateY(-18px);
+}
+
+.splitHeading:hover span:nth-child(2) {
+  transform: translateY(18px);
+}
+
+.splitHeading:hover span:nth-child(3) {
+  transform: translateY(-50%) scaleY(1);
+}
+
+/* Global boutique layout: components/boutique/boutique-globals.css (imported from boutique page) */
+
+/* ================= TABLET + MOBILE (gallery) ================= */
+
+@media (max-width: 1024px) {
+  .galleryRow {
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    margin-top: 2rem;
+  }
+
+  .parallaxWindow {
+    flex: 0 0 90px;
+    height: 320px !important;
+  }
+
+  .parallaxImg {
+    position: absolute;
+    bottom: 0;
+    top: auto;
+    width: 100%;
+    height: 300%;
+    object-fit: cover;
+  }
+
+  .parallaxWindow:nth-child(1) img {
+    object-position: 0% 75%;
+  }
+
+  .parallaxWindow:nth-child(2) img {
+    object-position: 20% 75%;
+  }
+
+  .parallaxWindow:nth-child(3) img {
+    object-position: 50% 75%;
+  }
+
+  .splitHeading {
+    position: relative;
+    top: auto;
+    left: auto;
+    text-align: center;
+    font-size: clamp(3.5rem, 4vw, 4rem);
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+  }
+
+  .splitHeading:hover span:nth-child(1),
+  .splitHeading:hover span:nth-child(2) {
+    transform: none;
+  }
+}

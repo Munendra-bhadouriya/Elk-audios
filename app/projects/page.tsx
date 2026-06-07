@@ -17,6 +17,7 @@ import {
 } from "framer-motion";
 
 interface Feature {
+  id: string;
   icon: React.ReactNode;
   title: string;
   description: string;
@@ -25,6 +26,7 @@ interface Feature {
 
 const features: Feature[] = [
   {
+    id: "luxury-home-audio-installation",
     icon: <IconHome className="h-8 w-8 text-neutral-200" />,
     title: "Luxury Home Audio Installation",
     description:
@@ -42,6 +44,7 @@ const features: Feature[] = [
     ),
   },
   {
+    id: "premium-listening-experience",
     icon: <IconMusic className="h-8 w-8 text-neutral-200" />,
     title: "Premium Listening Experience",
     description:
@@ -59,6 +62,7 @@ const features: Feature[] = [
     ),
   },
   {
+    id: "cinema-quality-home-theater",
     icon: <IconDeviceTv className="h-8 w-8 text-neutral-200" />,
     title: "Cinema-Quality Home Theater",
     description:
@@ -76,6 +80,7 @@ const features: Feature[] = [
     ),
   },
   {
+    id: "commercial-audio-solutions",
     icon: <IconBuilding className="h-8 w-8 text-neutral-200" />,
     title: "Commercial Audio Solutions",
     description:
@@ -93,6 +98,7 @@ const features: Feature[] = [
     ),
   },
   {
+    id: "professional-av-systems",
     icon: <IconMicrophone className="h-8 w-8 text-neutral-200" />,
     title: "Professional AV Systems",
     description:
@@ -202,7 +208,7 @@ export default function ProjectsPage() {
       {restFeatures.length > 0 && (
         <section className="mx-auto flex max-w-4xl flex-col gap-10 px-4 pb-20">
           {restFeatures.map((feature, idx) => (
-            <Card key={feature.title ?? idx} feature={feature} />
+            <Card key={feature.id ?? idx} feature={feature} />
           ))}
         </section>
       )}
@@ -253,8 +259,9 @@ const Card = ({ feature, isFirst = false, isLoaded = false }: CardProps) => {
   return (
     <div
       ref={ref}
-      key={feature.title}
-      className="grid grid-cols-1 md:grid-cols-2 items-center gap-20 py-40"
+      id={feature.id}
+      key={feature.id}
+      className="grid scroll-mt-28 grid-cols-1 items-center gap-20 py-40 md:grid-cols-2 md:scroll-mt-32"
     >
       <motion.div
         className="flex flex-col gap-5"

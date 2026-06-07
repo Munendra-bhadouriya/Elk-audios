@@ -110,7 +110,7 @@ export default function Navigation({
                   Lifestyle & Home Audio
                 </Link>
                 <Link
-                  href="/products/home-cinema"
+                  href="/products/boutique-architectural"
                   className="block px-4 py-2.5 text-sm text-text hover:bg-gray-50 transition-colors"
                 >
                   Home Cinema
@@ -126,12 +126,6 @@ export default function Navigation({
                   className="block px-4 py-2.5 text-sm text-text hover:bg-gray-50 transition-colors"
                 >
                   Commercial PAVA & AV
-                </Link>
-                <Link
-                  href="/build-your-own"
-                  className="block px-4 py-2.5 text-sm text-text hover:bg-gray-50 transition-colors"
-                >
-                  Build Your Own
                 </Link>
               </div>
             </div>
@@ -195,7 +189,7 @@ export default function Navigation({
                     Lifestyle & Home Audio
                   </Link>
                   <Link
-                    href="/products/home-cinema"
+                    href="/products/boutique-architectural"
                     className="px-4 py-2.5 text-sm text-text hover:bg-gray-50 hover:text-secondary transition-colors"
                     onClick={() => {
                       setMobileMenuOpen(false);
@@ -223,16 +217,6 @@ export default function Navigation({
                     }}
                   >
                     Commercial PAVA & AV
-                  </Link>
-                  <Link
-                    href="/build-your-own"
-                    className="px-4 py-2.5 text-sm text-text hover:bg-gray-50 hover:text-secondary transition-colors"
-                    onClick={() => {
-                      setMobileMenuOpen(false);
-                      setProductsDropdownOpen(false);
-                    }}
-                  >
-                    Build Your Own
                   </Link>
                 </div>
               )}
